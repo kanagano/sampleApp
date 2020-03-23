@@ -7,6 +7,8 @@ services:
       MYSQL_DATABASE: sampledb
     ports:
       - "3306:3306"
+    volumes:
+      - ./db/mysql/volumes:/var/lib/mysql
 
   web:
     build: .
