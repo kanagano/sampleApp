@@ -10,6 +10,19 @@
   </head>
 
   <body>
+    <header>
+      <div class="header-logo">
+        <%= link_to("Top", "/") %>
+      </div>
+      <ul class="header-menus">
+        <li>
+          <%= link_to("About", "/about") %>
+        </li>
+        <li>
+          <%= link_to("User index", "/users/index") %>
+        </li>
+      </ul>
+    </header>
     <%= yield %>
   </body>
 </html>

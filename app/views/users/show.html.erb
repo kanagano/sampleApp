@@ -8,5 +8,6 @@
 <body>
     <h2><%= @user.name %></h2>
     <p><%= @user.email %></p>
+    <%= link_to("Edit", "/users/#{@user.id}/edit")%>
 </body>
 </html>

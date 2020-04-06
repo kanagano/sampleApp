@@ -1,0 +1,44 @@
+ul, li {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+header {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: blueviolet;
+    height: 64px;
+    width: 100%;
+}
+.header-logo {
+    line-height: 64px;
+    float: left;
+    padding-left: 20px;
+}
+.header-logo a {
+    color: white;
+}
+.header-menus {
+    line-height: 64px;
+    float: right;
+    padding-right: 20px;
+}
+.header-menus li{
+    float: left;
+    padding-left: 15px;
+}
+.header-menus a {
+    color: white;
+}
+
+.main {
+    position: absolute;
+    top: 64px;
+    width: 100%;
+    height: auto;
+}
+.top-message {
+    margin-left: 20px;
+    margin-top: 20px;
+}
