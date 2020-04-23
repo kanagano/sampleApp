@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User information</title>
-</head>
-<body>
-    <h2><%= @user.name %></h2>
-    <p><%= @user.email %></p>
-    <%= link_to("Edit", "/users/#{@user.id}/edit")%>
-</body>
-</html>
+<div class="main usershow-main">
+    <div class="user-profile">
+        <h2><%= @user.name %></h2>
+        <p><%= @user.email %></p>
+        <% if @current_user %>
+            <% if @current_user.id == params[:id].to_i %>
+                <%= link_to("Edit", "/users/#{@user.id}/edit") %>
+            <% end %>
+        <% end %>
+    </div>
+</div>

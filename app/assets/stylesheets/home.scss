@@ -1,3 +1,6 @@
+a {
+    text-decoration: none;
+}
 ul, li {
     list-style-type: none;
     padding: 0;
@@ -8,19 +11,21 @@ header {
     top: 0px;
     left: 0px;
     background-color: blueviolet;
-    height: 64px;
+    height: 100px;
     width: 100%;
 }
 .header-logo {
-    line-height: 64px;
+    line-height: 100px;
     float: left;
     padding-left: 20px;
+    font-size: x-large;
 }
 .header-logo a {
     color: white;
-}
+    font-family: 'Times New Roman', Times, serif;
+}  
 .header-menus {
-    line-height: 64px;
+    line-height: 50px;
     float: right;
     padding-right: 20px;
 }
@@ -32,13 +37,40 @@ header {
     color: white;
 }
 
+.flash {
+    padding: 10px 0;
+    color: white;
+    background-color: #66CCCC;
+    text-align: center;
+    position: absolute;
+    top: 100px;
+    left: 0px;
+    z-index: 10;
+    width: 100%;
+    font-size: 14px;
+    border-radius: 0 0 5px 5px;
+}
+
 .main {
     position: absolute;
-    top: 64px;
+    top: 120px;
     width: 100%;
     height: auto;
 }
 .top-message {
     margin-left: 20px;
     margin-top: 20px;
+}
+
+.fav-btn {
+    color: #CCCCCC;
+}
+.fav-btn-unfav {
+    color: #FFCC00;
+}
+.like-btn {
+    color: #CCCCCC;
+}
+.like-btn-unlike {
+    color: #FF6666
 }

@@ -1,17 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit user information</title>
-</head>
-<body>
-    <%= form_tag("/users/#{@user.id}/update") do %>
-        <p>Username</p>
-        <input name="name" value="<%= @user.name %>">
-        <p>E-mail adress</p>
-        <input name="email" value="<%= @user.email %>">
-        <input type="submit" value="Update">
-    <% end %>
-</body>
-</html>
+<div class="main useredit">
+    <div class="useredit-form">
+        <%= form_tag("/users/#{@user.id}/update") do %>
+            <p>ユーザー名</p>
+            <input name="name" value="<%= @user.name %>">
+            <p>メールアドレス</p>
+            <input name="email" value="<%= @user.email %>">
+            <p>パスワード</p>
+            <input name="password" value="<%= @user.password %>" type="password">
+            <input type="submit" value="更新">
+        <% end %>
+    </div>
+</div>
