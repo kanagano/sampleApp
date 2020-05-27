@@ -1,0 +1,6 @@
+<%= render "search_form" %>
+
+<%= paginate @museums %>
+<% @museums.each do |museum| %>
+    <%= link_to(museum.name, "/museums/#{museum.id}") %>
+<% end %>

@@ -12,7 +12,8 @@ Rails.application.routes.draw do
   get 'users/index' => 'users#index'
   get 'users/:id' => 'users#show'
 
-  get 'museums/index' => 'museums#index'
+  get 'museums' => 'museums#index'
+  get 'museums/search' => 'museums#search'
   get 'museums/:id' => 'museums#show'
 
   get 'posts/:museum_id/new' => 'posts#new'
@@ -24,7 +25,8 @@ Rails.application.routes.draw do
   post 'likes/:post_id/destroy' => 'likes#destroy'
 
   post 'favorites/:museum_id/create' => 'favorites#create'
-  post 'favorites/:museum_id/destroy' => 'favorites#destroy'
+  post 'favorites/:museum_id/destroy' => 'favorites#destroy
+  '
 
   resources :maps, only: [:index]
 end

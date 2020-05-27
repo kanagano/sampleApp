@@ -5,3 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+if Rails.env == "development"
+    10.times do |i|
+        Museum.create!(name: "Museum#{i + 11}", location: "Town#{i + 11}")
+    end
+end

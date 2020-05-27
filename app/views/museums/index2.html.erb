@@ -1,0 +1,9 @@
+<div class="main museumindex-main">
+    <%= link_to("キーワード検索", "/museums/search") %>
+    <% @museums.each do |museum| %>
+        <%= link_to(museum.name, "/museums/#{museum.id}") %>
+    <% end %>
+    <%= paginate @museums %>
+</div>
+
+#@museums = Museum.all.page(params[:page]).per(10)
