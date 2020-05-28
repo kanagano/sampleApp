@@ -25,8 +25,7 @@ Rails.application.routes.draw do
   post 'likes/:post_id/destroy' => 'likes#destroy'
 
   post 'favorites/:museum_id/create' => 'favorites#create'
-  post 'favorites/:museum_id/destroy' => 'favorites#destroy
-  '
+  post 'favorites/:museum_id/destroy' => 'favorites#destroy'
 
   resources :maps, only: [:index]
 end
