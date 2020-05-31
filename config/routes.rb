@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'notifications/index'
   get '/' => 'home#top'
   get 'about' => 'home#about'
   
@@ -26,6 +27,8 @@ Rails.application.routes.draw do
 
   post 'favorites/:museum_id/create' => 'favorites#create'
   post 'favorites/:museum_id/destroy' => 'favorites#destroy'
+
+  get 'notifications' => 'notifications#index'
 
   resources :maps, only: [:index]
 end

@@ -5,16 +5,16 @@
         <% if @current_user %>
             <% if Favorite.find_by(user_id: @current_user.id, museum_id: @museum.id) %>
                 <%= link_to("/favorites/#{@museum.id}/destroy", {method: :post}) do %>
-                    <span class="fa fa-star fav-btn-unfav"></span>
+                    <span class="fa fa-star text-warning"></span>
                 <% end %>
             <% else %>
                 <%= link_to("/favorites/#{@museum.id}/create", {method: :post}) do %>
-                    <span class="fa fa-star fav-btn"></span>
+                    <span class="fa fa-star text-secondary"></span>
                 <% end %>
             <% end %>
         <% else %>
             <%= link_to("/login") do %>
-                <span class="fa fa-star fav-btn"></span>
+                <span class="fa fa-star text-secondary"></span>
             <% end %>
         <% end %>
     </div>
@@ -41,16 +41,16 @@
             <% if @current_user %>
                 <% if Like.find_by(user_id: @current_user.id, post_id: post.id) %>
                     <%= link_to("/likes/#{post.id}/destroy", {method: :post}) do  %>
-                        <span class="fa fa-heart like-btn-unlike"></span>
+                        <span class="fa fa-heart text-danger"></span>
                     <% end %>
                 <% else %>
                     <%= link_to("/likes/#{post.id}/create", {method: :post}) do %>
-                        <span class="fa fa-heart like-btn"></span>
+                        <span class="fa fa-heart text-secondary"></span>
                     <% end %>
                 <% end %>
             <% else %>
                 <%= link_to("/login") do %>
-                    <span class="fa fa-heart like-btn"></span>
+                    <span class="fa fa-heart text-secondary"></span>
                 <% end %>
             <% end %>
             <% @likes_count = Like.where(post_id: post.id).count %>

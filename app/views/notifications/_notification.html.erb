@@ -1,0 +1,7 @@
+<% visitor = notification.visitor %>
+<% visited = notification.visited %>
+
+<% case notification.action %>
+<% when 'like' then %>
+    <%= visitor.name + "さんがあなたの投稿にいいねしました" %>
+<% end %>

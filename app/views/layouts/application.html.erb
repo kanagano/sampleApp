@@ -21,6 +21,12 @@
           <li><%= link_to("施設を探す", "/museums") %></li>
           <% if @current_user %>
             <li><%= link_to(@current_user.name, "/users/#{@current_user.id}") %></li>
+            <li>
+              <%= link_to("お知らせ", "/notifications") %>
+              <% if @current_user.passive_notifications.where(checked: false).exists? %>
+                <span class="fa fa-bell text-warning"></span>
+              <% end %>
+            </li>
             <li><%= link_to("ログアウト", "/logout", {method: :post}) %></li>
           <% else %>
             <li><%= link_to("About", "/about") %></li>
