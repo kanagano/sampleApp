@@ -2,6 +2,23 @@
     <div class="museum-detail">
         <h2><%= @museum.name %></h2>
         <p><%= @museum.location %></p>
+        <% if @posts.exists? %>
+            <% starSum = @posts.sum(:star) %>
+            <% starAverage = starSum.fdiv(@posts.count).round(2) %>
+            <% museumStar = starSum.fdiv(@posts.count).round %>
+            <% noMuseumStar = 5 - museumStar %>
+            <p>
+                <% museumStar.times do %>
+                    <span class="fa fa-star text-warning"></span>
+                <% end %>
+                <% noMuseumStar.times do %>
+                    <span class="fa fa-star text-secondary"></span>
+                <% end %>
+                <%= "#{starAverage} / 5.0" %>
+            </p>
+        <% else %>
+            <p>まだクチコミはありません</p>
+        <% end %>
         <% if @current_user %>
             <% if Favorite.find_by(user_id: @current_user.id, museum_id: @museum.id) %>
                 <%= link_to("/favorites/#{@museum.id}/destroy", {method: :post}) do %>
@@ -20,11 +37,30 @@
     </div>
     <div class="museum-my-post">
         <% if @current_user %>
-            <% mypost = Post.find_by(user_id: @current_user.id, museum_id: params[:id]) %>
-            <% if mypost %>
+            <% myPost = @posts.find_by(user_id: @current_user.id) %>
+            <% if myPost %>
                 <p>あなたのクチコミ</p>
-                <p><%= mypost.content %></p>
-                <%= link_to("編集", "/posts/#{mypost.id}/edit") %>
+                <p><%= myPost.content %></p>
+                <% myStar = myPost.star %>
+                <% noMyStar = 5 - myStar %>
+                <% myStar.times do %>
+                    <span class="fa fa-star text-warning"></span>
+                <% end %>
+                <% noMyStar.times do %>
+                    <span class="fa fa-star text-secondary"></span>
+                <% end %>
+                <% if Like.find_by(user_id: @current_user.id, post_id: myPost.id) %>
+                    <%= link_to("/likes/#{myPost.id}/destroy", {method: :post}) do  %>
+                        <span class="fa fa-heart text-danger"></span>
+                    <% end %>
+                <% else %>
+                    <%= link_to("/likes/#{myPost.id}/create", {method: :post}) do %>
+                        <span class="fa fa-heart text-secondary"></span>
+                    <% end %>
+                <% end %>
+                <% myLikes_count = Like.where(post_id: myPost.id).count %>
+                <%= myLikes_count %>
+                <p><%= link_to("編集", "/posts/#{myPost.id}/edit") %></p>
             <% else %>
                 <%= link_to("クチコミを投稿する", "/posts/#{params[:id]}/new") %>
             <% end %>
@@ -34,10 +70,19 @@
         <% end %>
     </div>
     <div class="museum-posts">
-        <% @posts.each do |post| %>
+        <% posts = @posts.where.not(user_id: @current_user.id) %>
+        <% posts.each do |post| %>
             <% user = User.find_by(id: post.user_id) %>
             <p><%= user.name %></p>
             <p><%= post.content %></p>
+            <% star = post.star %>
+            <% noStar = 5 - star %>
+            <% star.times do %>
+                <span class="fa fa-star text-warning"></span>
+            <% end %>
+            <% noStar.times do %>
+                <span class="fa fa-star text-secondary"></span>
+            <% end %>
             <% if @current_user %>
                 <% if Like.find_by(user_id: @current_user.id, post_id: post.id) %>
                     <%= link_to("/likes/#{post.id}/destroy", {method: :post}) do  %>

@@ -5,7 +5,6 @@ class MuseumsController < ApplicationController
 
   def show
     @museum = Museum.find_by(id: params[:id])
-    
     @posts = Post.where(museum_id: params[:id])
   end
 
