@@ -6,7 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 if Rails.env == "development"
-    10.times do |i|
-        Museum.create!(name: "Museum#{i + 11}", location: "Town#{i + 11}")
-    end
+    Notification.create(
+        visitor_id: 5,
+        visited_id: 1,
+        action: 'signup'
+    )
 end
