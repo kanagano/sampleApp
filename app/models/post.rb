@@ -7,6 +7,7 @@ class Post < ApplicationRecord
     validates :content, {presence: true, length: {maximum: 200}}
     validates :user_id, {presence: true}
     validates :museum_id, {presence: true}
+    validates :star, {presence: true, numericality: {greater_than: 0}}
 
     def create_notification_like(current_user)
         temp = Notification.where(
