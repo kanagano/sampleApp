@@ -19,6 +19,7 @@ class LikesController < ApplicationController
         )
         @like.save
         @post = Post.find_by(id: @like.post_id)
+        @post.create_notification_like(@current_user)
         redirect_to("/museums/#{@post.museum_id}")
     end
 
