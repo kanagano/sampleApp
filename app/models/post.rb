@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
     belongs_to :target, class_name: "Museum", foreign_key: "museum_id"
     belongs_to :writer, class_name: "User", foreign_key: "user_id"
-    has_many :likes
+    has_many :likes, dependent: :destroy
     has_many :notifications, dependent: :destroy
     
     validates :content, {presence: true, length: {maximum: 200}}
