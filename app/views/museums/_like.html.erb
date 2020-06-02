@@ -1,0 +1,10 @@
+<% if Like.find_by(user_id: @current_user.id, post_id: post.id) %>
+    <%= link_to("/likes/#{post.id}/destroy", {method: :post}) do  %>
+        <span class="fa fa-heart text-danger"></span>
+    <% end %>
+<% else %>
+    <%= link_to("/likes/#{post.id}/create", {method: :post}) do %>
+        <span class="fa fa-heart text-secondary"></span>
+    <% end %>
+<% end %>
+<%= Like.where(post_id: post.id).count %>

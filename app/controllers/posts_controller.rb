@@ -24,7 +24,12 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.create(user_id: @current_user.id, museum_id: params[:museum_id], content: params[:content])
+    @post = Post.create(
+      user_id: @current_user.id,
+      museum_id: params[:museum_id],
+      star: params[:star].to_i,
+      content: params[:content]
+    )
     if @post.save
       flash[:notice] = "クチコミが投稿されました"
       redirect_to("/museums/#{params[:museum_id]}")
@@ -39,6 +44,7 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find_by(id: params[:id])
+    @post.star = params[:star].to_i
     @post.content = params[:content]
     if @post.save
       flash[:notice] = "クチコミを編集しました"

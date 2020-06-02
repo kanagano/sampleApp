@@ -2,6 +2,17 @@
     <div class="museum-detail">
         <h2><%= @museum.name %></h2>
         <p><%= @museum.location %></p>
+        <% if @posts.exists? %>
+            <% starSum = @posts.sum(:star) %>
+            <% starAverage = starSum.fdiv(@posts.count).round(2) %>
+            <% museumStar = starSum.fdiv(@posts.count).round %>
+            <p>
+                <%= render partial: "fiveStar", locals: {star: museumStar} %>
+                <%= "#{starAverage} / 5.0" %>
+            </p>
+        <% else %>
+            <p>まだクチコミはありません</p>
+        <% end %>
         <% if @current_user %>
             <% if Favorite.find_by(user_id: @current_user.id, museum_id: @museum.id) %>
                 <%= link_to("/favorites/#{@museum.id}/destroy", {method: :post}) do %>
@@ -18,43 +29,33 @@
             <% end %>
         <% end %>
     </div>
+    
     <div class="museum-my-post">
         <% if @current_user %>
-            <% mypost = Post.find_by(user_id: @current_user.id, museum_id: params[:id]) %>
-            <% if mypost %>
+            <% myPost = @posts.find_by(user_id: @current_user.id) %>
+            <% if myPost %>
                 <p>あなたのクチコミ</p>
-                <p><%= mypost.content %></p>
-                <%= link_to("編集", "/posts/#{mypost.id}/edit") %>
+                <%= render partial: "post", locals: {post: myPost} %>
+                <%= render partial: "like", locals: {post: myPost} %>
+                <p><%= link_to("編集", "/posts/#{myPost.id}/edit") %></p>
             <% else %>
                 <%= link_to("クチコミを投稿する", "/posts/#{params[:id]}/new") %>
+            <% end %>
+            <% posts = @posts.where.not(user_id: @current_user.id) %>
+            <% posts.each do |post| %>
+                <%= render partial: "post", locals: {post: post} %>
+                <%= render partial: "like", locals: {post: post} %>
             <% end %>
         <% else %>
             <p>クチコミを投稿するにはログインが必要です</p>
             <%= link_to("ログイン", "/login") %>
-        <% end %>
-    </div>
-    <div class="museum-posts">
-        <% @posts.each do |post| %>
-            <% user = User.find_by(id: post.user_id) %>
-            <p><%= user.name %></p>
-            <p><%= post.content %></p>
-            <% if @current_user %>
-                <% if Like.find_by(user_id: @current_user.id, post_id: post.id) %>
-                    <%= link_to("/likes/#{post.id}/destroy", {method: :post}) do  %>
-                        <span class="fa fa-heart text-danger"></span>
-                    <% end %>
-                <% else %>
-                    <%= link_to("/likes/#{post.id}/create", {method: :post}) do %>
-                        <span class="fa fa-heart text-secondary"></span>
-                    <% end %>
-                <% end %>
-            <% else %>
+            <% @posts.each do |post| %>
+                <%= render partial: "post", locals: {post: post} %>
                 <%= link_to("/login") do %>
                     <span class="fa fa-heart text-secondary"></span>
                 <% end %>
+                <%= Like.where(post_id: post.id).count %>
             <% end %>
-            <% @likes_count = Like.where(post_id: post.id).count %>
-            <%= @likes_count %>
         <% end %>
     </div>
 </div>
