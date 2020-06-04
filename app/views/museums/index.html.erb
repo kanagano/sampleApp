@@ -1,6 +1,26 @@
-    <%= render "search_form" %>
+<%= render "search_form" %>
 
-    <% @museums.each do |museum| %>
-        <%= link_to(museum.name, "/museums/#{museum.id}") %>
-    <% end %>
-    <%= paginate @museums %>
+<% @museums.each do |museum| %>
+    <div>
+        <%= image_tag "/museum_images/#{museum.image_name}", class: "index-image"%>
+        <p><%= link_to(museum.name, "/museums/#{museum.id}") %></p>
+        <% posts = museum.posts %>
+        <% if posts.exists? %>
+            <% starSum = posts.sum(:star) %>
+            <% starAverage = starSum.fdiv(posts.count).round(2) %>
+            <% museumStar = starSum.fdiv(posts.count).round %>
+            <p>
+                <%= render partial: "fiveStar", locals: {star: museumStar} %>
+                <%= "#{starAverage} / 5.0" %>
+            </p>
+        <% else %>
+            <p>
+                <% 5.times do %>
+                    <span class="fa fa-star text-secondary"></span>
+                <% end %>
+                <%= "　" + "- - -" %>
+            </p>
+        <% end %>
+    </div>
+<% end %>
+<%= paginate @museums %>

@@ -1,7 +1,9 @@
 <div class="main museumshow-main">
     <div class="museum-detail">
+        <%= image_tag "/museum_images/#{@museum.image_name}", class: "show-image" %>
         <h2><%= @museum.name %></h2>
         <p><%= @museum.location %></p>
+        <p><%= @museum.introduction %></p>
         <% if @posts.exists? %>
             <% starSum = @posts.sum(:star) %>
             <% starAverage = starSum.fdiv(@posts.count).round(2) %>
@@ -11,6 +13,12 @@
                 <%= "#{starAverage} / 5.0" %>
             </p>
         <% else %>
+            <p>
+                <% 5.times do %>
+                    <span class="fa fa-star text-secondary"></span>
+                <% end %>
+                <%= "　" + "- - -" %>
+            </p>
             <p>まだクチコミはありません</p>
         <% end %>
         <% if @current_user %>
