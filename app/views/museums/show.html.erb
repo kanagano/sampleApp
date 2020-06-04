@@ -21,6 +21,7 @@
             </p>
             <p>まだクチコミはありません</p>
         <% end %>
+        <%= render "map" %>
         <% if @current_user %>
             <% if Favorite.find_by(user_id: @current_user.id, museum_id: @museum.id) %>
                 <%= link_to("/favorites/#{@museum.id}/destroy", {method: :post}) do %>
