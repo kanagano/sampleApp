@@ -1,0 +1,29 @@
+<p id="address">
+    <%= @museum.location %>
+</p>
+<div id="gmap" style="height:400px;width:600px"></div>
+
+<script>
+function initMap() {
+    var target = document.getElementById('gmap');  
+    var address = document.getElementById('address').textContent; 
+    var geocoder = new google.maps.Geocoder();  
+    
+    geocoder.geocode({ address: address }, function(results, status){
+        if (status === 'OK' && results[0]){  
+            let map = new google.maps.Map(target, {
+                center: results[0].geometry.location,
+                zoom: 16
+            });
+            let marker = new google.maps.Marker({
+                position: results[0].geometry.location,
+                map: map
+            });
+        }else{ 
+            alert('失敗しました。理由: ' + status);
+            return;
+        }
+    });
+}
+</script> 
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GMAP_API_KEY'] %>&callback=initMap" async defer></script>  
