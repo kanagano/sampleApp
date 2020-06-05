@@ -2,7 +2,6 @@
     <div class="museum-detail">
         <%= image_tag "/museum_images/#{@museum.image_name}", class: "show-image" %>
         <h2><%= @museum.name %></h2>
-        <p><%= @museum.location %></p>
         <p><%= @museum.introduction %></p>
         <% if @posts.exists? %>
             <% starSum = @posts.sum(:star) %>
