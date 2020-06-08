@@ -51,21 +51,24 @@
             <% else %>
                 <%= link_to("クチコミを投稿する", "/posts/#{params[:id]}/new") %>
             <% end %>
-            <% posts = @posts.where.not(user_id: @current_user.id) %>
+            <% posts = @posts.where.not(user_id: @current_user.id).page(params[:page]).per(15) %>
             <% posts.each do |post| %>
                 <%= render partial: "post", locals: {post: post} %>
                 <%= render partial: "like", locals: {post: post} %>
             <% end %>
+            <%= paginate posts %>
         <% else %>
             <p>クチコミを投稿するにはログインが必要です</p>
             <%= link_to("ログイン", "/login") %>
-            <% @posts.each do |post| %>
+            <% posts = @posts.page(params[:page]).per(15) %>
+            <% posts.each do |post| %>
                 <%= render partial: "post", locals: {post: post} %>
                 <%= link_to("/login") do %>
                     <span class="fa fa-heart text-secondary"></span>
                 <% end %>
                 <%= Like.where(post_id: post.id).count %>
             <% end %>
+            <%= paginate posts %>
         <% end %>
     </div>
 </div>
