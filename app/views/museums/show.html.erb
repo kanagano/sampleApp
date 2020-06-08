@@ -3,6 +3,8 @@
         <%= image_tag "/museum_images/#{@museum.image_name}", class: "show-image" %>
         <h2><%= @museum.name %></h2>
         <p><%= @museum.introduction %></p>
+        <p><%= simple_format @museum.opening_time %></p>
+        <p><%= simple_format @museum.closing_day %></p>
         <% if @posts.exists? %>
             <% starSum = @posts.sum(:star) %>
             <% starAverage = starSum.fdiv(@posts.count).round(2) %>
