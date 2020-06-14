@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user, {only: [:edit, :update]}
+  before_action :authenticate_user, {only: [:show, :favorites, :edit, :update]}
   before_action :forbid_login_user, {only: [:new, :create, :login_form, :login]}
-  before_action :ensure_correct_user, {only: [:edit, :update]}
+  before_action :ensure_correct_user, {only: [:show, :favorites, :edit, :update]}
 
   def edit
     @user = User.find_by(id: params[:id])
@@ -26,6 +26,12 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find_by(id: params[:id])
+    @posts = @user.posts.order("updated_at DESC").first(3)
+  end
+  
+  def favorites
+    @user = User.find_by(id: params[:id])
+    @museums = @user.museums.page(params[:page]).per(2)
   end
   
   def new
@@ -39,6 +45,7 @@ class UsersController < ApplicationController
       flash[:notice] = "アカウントが作成されました"
       redirect_to("/")
     else
+      @error_message = "正しい値を入力してください"
       render("users/new")
     end
   end

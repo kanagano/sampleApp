@@ -1,11 +1,27 @@
-<div class="main usershow-main">
-    <div class="user-profile">
-        <h2><%= @user.name %></h2>
-        <p><%= @user.email %></p>
-        <% if @current_user %>
-            <% if @current_user.id == params[:id].to_i %>
-                <%= link_to("Edit", "/users/#{@user.id}/edit") %>
+<div class="container">
+    <h3 class="text-center">マイページ</h3>
+    <div class="row mt-4 mb-5">
+        <div class="col-4 text-center border-right">
+            <h2 class="mt-5"><%= @user.name %></h2>
+            <h4><%= @user.email %></h4>
+            <% if @current_user %>
+                <% if @current_user.id == params[:id].to_i %>
+                    <%= link_to("会員情報を変更する", "/users/#{@user.id}/edit") %>
+                <% end %>
             <% end %>
-        <% end %>
+        </div>
+        <div class="col-8">
+            <h4 class="ml-5 my-4">最近投稿したクチコミ</h4>
+            <% @posts.each do |post| %>
+                <div class="ml-4 p-3 border rounded">
+                    <%= render partial: "post", locals: {post: post} %>
+                    <%= render partial: "museums/like", locals: {post: post} %> 
+                    &nbsp;&nbsp;&nbsp;<%= link_to("編集", "/posts/#{post.id}/edit") %>
+                </div>
+            <% end %>
+            <h4 class="ml-5 mt-4 mb-5">
+                <%= link_to("お気に入りリストへ", "/users/#{@user.id}/favorites") %>
+            </h4>
+        </div>
     </div>
 </div>

@@ -1,13 +1,21 @@
-<div class="main signup-main">
-    <div class="signup-form">
-        <%= form_tag("/users/create") do %>
-            <p>ユーザー名</p>
-            <input name="name" value="<%= @user.name %>">
-            <p>メールアドレス</p>
-            <input name="email" value="<%= @user.email %>">
-            <p>パスワード</p>
-            <input name="password" value="<%= @user.password %>" type="password">
-            <input type="submit" value="登録">
-        <% end %>
+<div class="container">
+    <% if @error_message %>
+        <div class="alert alert-danger mx-auto w-50 text-center">
+            <%= @error_message %>
+        </div>
+    <% end %>
+    <div class="row justify-content-center">
+        <div class="col-4 text-center">
+            <h2 class="mb-5">会員登録</h2>
+            <%= form_tag("/users/create") do %>
+                <p>ユーザー名</p>
+                <p><input class="form-control" name="name" value="<%= @user.name %>"></p>
+                <p>メールアドレス</p>
+                <p><input class="form-control" name="email" value="<%= @user.email %>"></p>
+                <p>パスワード</p>
+                <p><input class="form-control" name="password" value="<%= @user.password %>" type="password"></p>
+                <p><input class="btn btn-primary mb-5" type="submit" value="登録"></p>
+            <% end %>
+        </div>
     </div>
 </div>

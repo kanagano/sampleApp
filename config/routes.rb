@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
-  get 'notifications/index'
   get '/' => 'home#top'
-  get 'about' => 'home#about'
   
   get 'users/:id/edit' => 'users#edit'
   post 'users/:id/update' => 'users#update'
+  get 'users/:id/favorites' => 'users#favorites'
   post 'users/create' => 'users#create'
   get 'signup' => 'users#new'
   get 'login' => 'users#login_form'

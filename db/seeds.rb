@@ -6,8 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 if Rails.env == "development"
-    Museum.create(
-        name: "Mizuno",
-        location: "Nagano" 
-    )
+    10.times do |i|
+        Museum.create(name: "museum#{i + 1}")
+    end
 end
