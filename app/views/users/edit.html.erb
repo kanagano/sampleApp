@@ -1,13 +1,15 @@
-<div class="main useredit">
-    <div class="useredit-form">
-        <%= form_tag("/users/#{@user.id}/update") do %>
-            <p>ユーザー名</p>
-            <input name="name" value="<%= @user.name %>">
-            <p>メールアドレス</p>
-            <input name="email" value="<%= @user.email %>">
-            <p>パスワード</p>
-            <input name="password" value="<%= @user.password %>" type="password">
-            <input type="submit" value="更新">
-        <% end %>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-4 text-center">
+            <%= form_tag("/users/#{@user.id}/update") do %>
+                <p>ユーザー名</p>
+                <p><input class="form-control" name="name" value="<%= @user.name %>"></p>
+                <p>メールアドレス</p>
+                <p><input class="form-control" name="email" value="<%= @user.email %>"></p>
+                <p>パスワード</p>
+                <p><input class="form-control" name="password" value="<%= @user.password %>" type="password"></p>
+                <p><input class="btn btn-primary" type="submit" value="更新"></p>
+            <% end %>
+        </div>
     </div>
 </div>

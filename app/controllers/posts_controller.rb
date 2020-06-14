@@ -21,6 +21,7 @@ class PostsController < ApplicationController
   
   def new
     @post = Post.new
+    @museum = Museum.find_by(id: params[:museum_id])
   end
 
   def create
@@ -34,6 +35,8 @@ class PostsController < ApplicationController
       flash[:notice] = "クチコミが投稿されました"
       redirect_to("/museums/#{params[:museum_id]}")
     else
+      @error_message = "正しい値を入力してください"
+      @museum = Museum.find_by(id: params[:museum_id])
       render("posts/new")
     end
   end
@@ -50,6 +53,7 @@ class PostsController < ApplicationController
       flash[:notice] = "クチコミを編集しました"
       redirect_to("/museums/#{@post.museum_id}")
     else
+      @error_message = "正しい値を入力してください"
       render("posts/edit")
     end
   end

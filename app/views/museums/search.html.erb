@@ -1,6 +1,53 @@
-<%= render "search_form" %>
+<div class="container mt-4">
+    <div class="row my-2">
+        <div class="col-3 border-right">
+            <%= render "search_form" %>
+        </div>
+        <div class="col-9">
+            <% if @museums.empty? %>
+                <div class="alert alert-warning mx-auto w-75 mt-5 text-center">
+                    検索ワードを含む美術館は見つかりませんでした
+                </div>
+            <% end %>
+            <% if @museums.present? %>
+                <h4 class="text-center">
+                    <%= "”#{params[:name]}”を含む検索結果一覧" %>
+                </h4>
+            <% end %>
+            <% @museums.each do |museum| %>
+                <div class="container border rounded my-4">
+                    <div class="row">
+                        <div class="col-4 border-right">
+                            <%= image_tag "/museum_images/#{museum.image_name}", class: "index-image mx-auto d-block"%>
+                        </div>
+                        <div class="col-8">
+                            <h4 class="mt-2"><%= link_to(museum.name, "/museums/#{museum.id}") %></h4>
+                            <p><%= museum.location %></p>
+                            <% posts = museum.posts %>
+                            <% if posts.exists? %>
+                                <% starSum = posts.sum(:star) %>
+                                <% starAverage = starSum.fdiv(posts.count).round(2) %>
+                                <% museumStar = starSum.fdiv(posts.count).round %>
+                                <p>
+                                    <%= render partial: "fiveStar", locals: {star: museumStar} %>
+                                    <%= "#{starAverage} / 5.0 (#{museum.posts.count})" %>
+                                </p>
+                            <% else %>
+                                <p>
+                                    <% 5.times do %>
+                                        <span class="fa fa-star text-secondary"></span>
+                                    <% end %>
+                                    <%= "　" + "- - - (0)" %>
+                                </p>
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>
 
-<%= paginate @museums %>
-<% @museums.each do |museum| %>
-    <%= link_to(museum.name, "/museums/#{museum.id}") %>
-<% end %>
+<div class="container mb-5">
+    <%= paginate @museums %>
+</div>

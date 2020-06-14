@@ -1,26 +1,43 @@
-<%= render "search_form" %>
-
-<% @museums.each do |museum| %>
-    <div>
-        <%= image_tag "/museum_images/#{museum.image_name}", class: "index-image"%>
-        <p><%= link_to(museum.name, "/museums/#{museum.id}") %></p>
-        <% posts = museum.posts %>
-        <% if posts.exists? %>
-            <% starSum = posts.sum(:star) %>
-            <% starAverage = starSum.fdiv(posts.count).round(2) %>
-            <% museumStar = starSum.fdiv(posts.count).round %>
-            <p>
-                <%= render partial: "fiveStar", locals: {star: museumStar} %>
-                <%= "#{starAverage} / 5.0" %>
-            </p>
-        <% else %>
-            <p>
-                <% 5.times do %>
-                    <span class="fa fa-star text-secondary"></span>
-                <% end %>
-                <%= "　" + "- - -" %>
-            </p>
-        <% end %>
+<div class="container mt-4">
+    <div class="row my-2">
+        <div class="col-3 border-right">
+            <%= render "search_form" %>
+        </div>
+        <div class="col-9">
+            <% @museums.each do |museum| %>
+                <div class="container border rounded my-4">
+                    <div class="row">
+                        <div class="col-4 border-right">
+                            <%= image_tag "/museum_images/#{museum.image_name}", class: "index-image mx-auto d-block"%>
+                        </div>
+                        <div class="col-8">
+                            <h4 class="mt-2"><%= link_to(museum.name, "/museums/#{museum.id}") %></h4>
+                            <p><%= museum.location %></p>
+                            <% posts = museum.posts %>
+                            <% if posts.exists? %>
+                                <% starSum = posts.sum(:star) %>
+                                <% starAverage = starSum.fdiv(posts.count).round(2) %>
+                                <% museumStar = starSum.fdiv(posts.count).round %>
+                                <p>
+                                    <%= render partial: "fiveStar", locals: {star: museumStar} %>
+                                    <%= "#{starAverage} / 5.0 (#{museum.posts.count})" %>
+                                </p>
+                            <% else %>
+                                <p>
+                                    <% 5.times do %>
+                                        <span class="fa fa-star text-secondary"></span>
+                                    <% end %>
+                                    <%= "　" + "- - - (0)" %>
+                                </p>
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+            <% end %>
+        </div>
     </div>
-<% end %>
-<%= paginate @museums %>
+</div>
+
+<div class="container mb-5">
+    <%= paginate @museums %>
+</div>

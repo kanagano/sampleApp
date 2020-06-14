@@ -1,8 +1,8 @@
 <% user = User.find_by(id: post.user_id) %>
-<p><%= user.name %></p>
+<h4><%= user.name %></h4>
 <% star = post.star %>
-<%= render partial: "fiveStar", locals: {star: star} %>
+<%= render partial: "museums/fiveStar", locals: {star: star} %>
 <p><%= post.content %></p>
 <% if post.created_at != post.updated_at %>
-    <p>(編集済み)</p>
+    <p class="text-secondary">(編集済み)</p>
 <% end %>

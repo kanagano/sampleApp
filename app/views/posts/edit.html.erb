@@ -1,16 +1,30 @@
-<div class="main post-edit">
-    <div class="post-edit-form">
-        <%= form_tag("/posts/#{@post.id}/update") do %>
-            <select name="star">
-                <option value="">---</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>
-            <textarea name="content"><%= @post.content %></textarea>
-            <input type="submit" value="更新">
-        <% end %>
+<div class="container">
+    <% if @error_message %>
+        <div class="alert alert-warning mx-auto w-50 text-center">
+            <%= @error_message %>
+        </div>
+    <% end %>
+    <div class="row justify-content-center">
+        <div class="col-4 text-center">
+            <h4><%= "#{@post.target.name}へのクチコミを編集" %></h4>
+            <%= form_tag("/posts/#{@post.id}/update") do %>
+                <p class="mt-4">
+                    <select class="form-control" name="star">
+                        <option value="">---</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </p>
+                <p>
+                    <textarea class="form-control" name="content"><%= @post.content %></textarea>
+                </p>
+                <p>
+                    <input class="btn btn-primary" type="submit" value="更新">
+                </p>
+            <% end %>
+        </div>
     </div>
 </div>
