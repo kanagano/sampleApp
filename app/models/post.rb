@@ -5,8 +5,7 @@ class Post < ApplicationRecord
     has_many :notifications, dependent: :destroy
     
     validates :content, {presence: true, length: {maximum: 200}}
-    validates :user_id, {presence: true}
-    validates :museum_id, {presence: true}
+    validates :user_id, :museum_id, {presence: true}
     validates :star, {presence: true, numericality: {greater_than: 0}}
 
     def create_notification_like(current_user)
