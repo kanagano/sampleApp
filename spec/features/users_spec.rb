@@ -13,4 +13,18 @@ RSpec.feature "Users", type: :feature do
             expect(page).to have_content "アカウントが作成されました"
         }.to change {User.count}.by(1)
     end
+    scenario "user logs in and out" do
+        user = FactoryBot.create(:user)
+        visit "/login"
+        fill_in "Email", with: user.email
+        fill_in "Password", with: user.password
+        click_button "Logs In"
+
+        expect(page).to have_content "ログインに成功しました"
+        expect(session[:user_id]).to eq user.id
+
+        click_link "ログアウト"
+
+        expect(session[:user_id]).to eq nil
+    end
 end
