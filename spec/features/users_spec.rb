@@ -11,6 +11,6 @@ RSpec.feature "Users", type: :feature do
             click_button "Create Account"
 
             expect(page).to have_content "アカウントが作成されました"
-        }.to change(User.count).by(1)
+        }.to change {User.count}.by(1)
     end
 end
