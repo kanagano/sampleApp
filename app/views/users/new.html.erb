@@ -9,12 +9,12 @@
             <h2 class="mb-5">会員登録</h2>
             <%= form_tag("/users/create") do %>
                 <p>ユーザー名</p>
-                <p><input class="form-control" name="name" value="<%= @user.name %>"></p>
+                <p><input class="form-control" id="Name" name="name" value="<%= @user.name %>"></p>
                 <p>メールアドレス</p>
-                <p><input class="form-control" name="email" value="<%= @user.email %>"></p>
+                <p><input class="form-control" id="Email" name="email" value="<%= @user.email %>"></p>
                 <p>パスワード</p>
-                <p><input class="form-control" name="password" value="<%= @user.password %>" type="password"></p>
-                <p><input class="btn btn-primary mb-5" type="submit" value="登録"></p>
+                <p><input class="form-control" id="Password" name="password" value="<%= @user.password %>" type="password"></p>
+                <p><input class="btn btn-primary mb-5" id="Create Account" type="submit" value="登録"></p>
             <% end %>
         </div>
     </div>
