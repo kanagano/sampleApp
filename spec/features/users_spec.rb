@@ -21,6 +21,7 @@ RSpec.feature "Users", type: :feature do
         click_button "Logs In"
 
         expect(page).to have_content "ログインに成功しました"
+        puts @current_user.inspect
         expect(@current_user.id).to eq 1
 
         click_link "ログアウト"
