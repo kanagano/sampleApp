@@ -21,11 +21,11 @@ RSpec.feature "Users", type: :feature do
         click_button "Logs In"
 
         expect(page).to have_content "ログインに成功しました"
-        puts @current_user.inspect
-        expect(@current_user.id).to eq 1
+        expect(page).to have_content user.name
 
         click_link "ログアウト"
 
-        expect(@current_user).to eq nil
+        expect(page).to have_content "ログアウトしました"
+        expect(page).to have_content "ログイン"
     end
 end
