@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "Museums", type: :feature do
   before do
-    @museum = FactoryBot.create(:create)
+    @museum = FactoryBot.create(:museum)
   end
   scenario "user sees museums" do
     visit "/museums"
