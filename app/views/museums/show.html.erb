@@ -10,11 +10,11 @@
                         <%= @museum.name %>
                         <% if @current_user %>
                             <% if Favorite.find_by(user_id: @current_user.id, museum_id: @museum.id) %>
-                                <%= link_to("/favorites/#{@museum.id}/destroy", {method: :post, id="Unfavorite"}) do %>
+                                <%= link_to("/favorites/#{@museum.id}/destroy", {method: :post, id: "Unfavorite"}) do %>
                                     <span class="fa fa-flag text-success"></span>
                                 <% end %>
                             <% else %>
-                                <%= link_to("/favorites/#{@museum.id}/create", {method: :post, id="Favorite"}) do %>
+                                <%= link_to("/favorites/#{@museum.id}/create", {method: :post, id: "Favorite"}) do %>
                                     <span class="fa fa-flag text-secondary"></span>
                                 <% end %>
                             <% end %>
