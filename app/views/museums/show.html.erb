@@ -19,7 +19,7 @@
                                 <% end %>
                             <% end %>
                         <% else %>
-                            <%= link_to("/login") do %>
+                            <%= link_to("/login", {id: "Favorite without login"}) do %>
                                 <span class="fa fa-flag text-secondary"></span>
                             <% end %>
                         <% end %>
@@ -78,7 +78,7 @@
                     <% posts.each do |post| %>
                         <div class="container border rounded my-3">
                             <%= render partial: "post", locals: {post: post} %>
-                            <%= link_to("/login") do %>
+                            <%= link_to("/login", {id: "Like #{post.id} without login"}) do %>
                                 <span class="fa fa-heart text-secondary"></span>
                             <% end %>
                             <%= Like.where(post_id: post.id).count %>
