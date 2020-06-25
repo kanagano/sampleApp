@@ -9,10 +9,10 @@
             <h2 class="mb-5">ログイン</h2>
             <%= form_tag("/login") do %>
                 <p>メールアドレス</p>
-                <p><input class="form-control" name="email" value="<%= @email %>"></p>
+                <p><input class="form-control" id="Email" name="email" value="<%= @email %>"></p>
                 <p>パスワード</p>
-                <p><input class="form-control" type="password" name="password" value="<%= @password %>"></p>
-                <p><input class="btn btn-primary mb-5" type="submit" value="ログイン"></p>
+                <p><input class="form-control" id="Password" type="password" name="password" value="<%= @password %>"></p>
+                <p><input class="btn btn-primary mb-5" id="Logs In" type="submit" value="ログイン"></p>
             <% end %>
         </div>
     </div>

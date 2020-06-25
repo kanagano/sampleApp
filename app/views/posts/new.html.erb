@@ -9,7 +9,7 @@
             <h4><%= "#{@museum.name}への新規クチコミ" %></h4>
             <%= form_tag("/posts/#{params[:museum_id]}/create") do %>
                 <p class="mt-4">
-                    <select class="form-control" name="star">
+                    <select class="form-control" id="Rate" name="star">
                         <option value="">評価を選択してください</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -19,9 +19,9 @@
                     </select>
                 </p>
                 <p>
-                    <textarea class="form-control" name="content" placeholder="クチコミ本文"></textarea>
+                    <textarea class="form-control" id="Content" name="content" placeholder="クチコミ本文"></textarea>
                 </p>
-                <p><input class="btn btn-primary" type="submit" value="投稿"></p>
+                <p><input class="btn btn-primary" id="Submit post" type="submit" value="投稿"></p>
             <% end %>
         </div>
     </div>

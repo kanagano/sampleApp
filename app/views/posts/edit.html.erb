@@ -9,7 +9,7 @@
             <h4><%= "#{@post.target.name}へのクチコミを編集" %></h4>
             <%= form_tag("/posts/#{@post.id}/update") do %>
                 <p class="mt-4">
-                    <select class="form-control" name="star">
+                    <select class="form-control" id="Rate" name="star">
                         <option value="">---</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -19,10 +19,10 @@
                     </select>
                 </p>
                 <p>
-                    <textarea class="form-control" name="content"><%= @post.content %></textarea>
+                    <textarea class="form-control" id="Content" name="content"><%= @post.content %></textarea>
                 </p>
                 <p>
-                    <input class="btn btn-primary" type="submit" value="更新">
+                    <input class="btn btn-primary" id="Edit post" type="submit" value="更新">
                 </p>
             <% end %>
         </div>
