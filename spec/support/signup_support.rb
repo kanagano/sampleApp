@@ -10,5 +10,5 @@ module SignupSupport
 end
 
 RSpec.configure do |config|
-    config.include LoginSupport
+    config.include SignupSupport
 end
