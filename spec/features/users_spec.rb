@@ -5,8 +5,10 @@ RSpec.feature "Users", type: :feature do
     scenario "user creates an account" do
         expect {
             sign_up
+            newUser = User.last
 
             expect(page).to have_content "アカウントが作成されました"
+            expect(page).to have_content newUser.name
         }.to change {User.count}.by(1)
     end
     scenario "user logs in and out" do
