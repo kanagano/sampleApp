@@ -7,7 +7,8 @@ RSpec.feature "Notifications", type: :feature do
   end
   scenario "user receives a notification when sign up" do
     expect {
-      sign_up_as newUser
+      sign_up
+      newUser = User.last
       log_in_as newUser
       click_link "New notification"
 

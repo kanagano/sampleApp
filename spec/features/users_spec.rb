@@ -4,7 +4,7 @@ require 'rails_helper'
 RSpec.feature "Users", type: :feature do
     scenario "user creates an account" do
         expect {
-            sign_up_as newUser
+            sign_up
 
             expect(page).to have_content "アカウントが作成されました"
         }.to change {User.count}.by(1)
