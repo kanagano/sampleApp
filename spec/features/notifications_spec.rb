@@ -9,7 +9,6 @@ RSpec.feature "Notifications", type: :feature do
     expect {
       sign_up
       newUser = User.last
-      log_in_as newUser
       click_link "New notification"
 
       expect(page).to have_content "信州美博Webへようこそ！"
