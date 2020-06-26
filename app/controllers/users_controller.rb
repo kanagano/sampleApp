@@ -41,9 +41,10 @@ class UsersController < ApplicationController
   def create 
     @user = User.create(name: params[:name], email: params[:email], password: params[:password])
     if @user.save
-      notification = Notification.create(visitor_id: 5, visited_id: @user.id, action: 'signup')
+      notification = Notification.create(visitor_id: @user.id, visited_id: @user.id, action: 'signup')
+      session[:user_id] = @user.id
       flash[:notice] = "アカウントが作成されました"
-      redirect_to("/")
+      redirect_to("/users/#{@user.id}")
     else
       @error_message = "正しい値を入力してください"
       render("users/new")

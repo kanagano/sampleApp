@@ -6,4 +6,5 @@ class Notification < ApplicationRecord
 
     #actionはlikeもしくはsignup
     validates :action, inclusion: {in: ["like", "signup"]}
+    validates :visitor_id, :visited_id, :action, presence: true
 end
