@@ -31,3 +31,15 @@ ClassAndModuleChildren:
 # 文字リテラルのイミュータブル宣言を無視（freezeになるのはRuby3以降）
 Style/FrozenStringLiteralComment:
   Enabled: false
+
+# For rubocop < 1.0.0
+Style/HashEachMethods:
+  Enabled: true
+
+# For rubocop < 1.0.0
+Style/HashTransformKeys:
+  Enabled: true
+
+# For rubocop < 1.0.0
+Style/HashTransformValues:
+  Enabled: true
