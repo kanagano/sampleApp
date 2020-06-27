@@ -62,7 +62,4 @@ jobs:
 
     - run:
         name: Rubocop
-        command: | 
-          bundle exec rubocop \
-            --fail-level W \
-            --display-only-fail-level-offenses 
+        command: bundle exec rubocop
