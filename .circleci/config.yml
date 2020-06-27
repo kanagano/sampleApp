@@ -60,6 +60,3 @@ jobs:
         path: /tmp/test-results
         destination: test-results
 
-    - run:
-        name: Rubocop
-        command: bundle exec rubocop
