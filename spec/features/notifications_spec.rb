@@ -13,7 +13,7 @@ RSpec.feature "Notifications", type: :feature do
 
       expect(page).to have_content "信州美博Webへようこそ！"
       expect(newUser.passive_notifications.where(checked: false)).to be_empty
-      expect(page).to have_content "Notification"
+      expect(page).to have_css ".Notification"
     }.to change {Notification.count}.by(1)
   end
   scenario "user receives a notification when posts liked" do
