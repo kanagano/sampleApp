@@ -6,7 +6,7 @@
             <h4><%= @user.email %></h4>
             <% if @current_user %>
                 <% if @current_user.id == params[:id].to_i %>
-                    <%= link_to("会員情報を変更する", "/users/#{@user.id}/edit") %>
+                    <%= link_to("会員情報を変更する", "/users/#{@user.id}/edit", {id: "Edit profile"}) %>
                 <% end %>
             <% end %>
         </div>
