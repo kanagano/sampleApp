@@ -20,7 +20,6 @@ RSpec.feature "Users", type: :feature do
         click_button "Logs In"
 
         expect(page).to have_content "メールアドレスまたはパスワードが間違っています"
-        expect(page).to have_content user1.email
         expect(page).to have_current_path "/login"
 
         log_in_as user1
@@ -33,7 +32,7 @@ RSpec.feature "Users", type: :feature do
         fill_in "email", with: user2.email 
         click_button "Update profile"
 
-        expect(page).to have_current_path "users/#{user1.id}/edit"
+        expect(page).to have_current_path "/users/#{user1.id}/edit"
         expect(page).to have_content user2.email
 
         click_link user1.name
@@ -42,7 +41,7 @@ RSpec.feature "Users", type: :feature do
         click_button "Update profile"
 
         expect(page).to have_content "プロフィールを編集しました"
-        expect(page).to have_current_path "users/#{user1.id}"
+        expect(page).to have_current_path "/users/#{user1.id}"
 
         click_link "ログアウト"
 
@@ -53,12 +52,12 @@ RSpec.feature "Users", type: :feature do
         user1 = FactoryBot.create(:user)
         user2 = FactoryBot.create(:user)
         log_in_as user1
-        visit "users/#{user2.id}"
+        visit "/users/#{user2.id}"
 
         expect(page).to have_content "権限がありません"
         expect(page).to have_current_path "/"
 
-        visit "users/#{user2.id}/edit"
+        visit "/users/#{user2.id}/edit"
 
         expect(page).to have_content "権限がありません"
         expect(page).to have_current_path "/"
