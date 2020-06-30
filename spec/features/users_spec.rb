@@ -32,7 +32,7 @@ RSpec.feature "Users", type: :feature do
         fill_in "email", with: user2.email 
         click_button "Update profile"
 
-        expect(page).to have_current_path "/users/#{user1.id}/edit"
+        expect(page).to have_current_path "/users/#{user1.id}/update"
         expect(page).to have_content user2.email
 
         click_link user1.name
