@@ -10,6 +10,11 @@ RSpec.feature "Users", type: :feature do
             expect(page).to have_content "アカウントが作成されました"
             expect(page).to have_content newUser.name
         }.to change {User.count}.by(1)
+
+        visit "/signup"
+
+        expect(page).to have_content "すでにログインしています"
+        expect(page).to have_current_path "/"
     end
     scenario "user logs in, edits a profile and logs out " do
         user1 = FactoryBot.create(:user)
@@ -26,6 +31,11 @@ RSpec.feature "Users", type: :feature do
 
         expect(page).to have_content "ログインに成功しました"
         expect(page).to have_content user1.name
+
+        visit "/login"
+
+        expect(page).to have_content "すでにログインしています"
+        expect(page).to have_current_path "/"
 
         click_link user1.name
         click_link "Edit profile"
@@ -46,10 +56,25 @@ RSpec.feature "Users", type: :feature do
 
         expect(page).to have_content "ログアウトしました"
         expect(page).to have_content "ログイン"
+
+        visit "/logout"
+
+        expect(page).to "ログインが必要です"
+        expect(page).to have_current_path "/login"
     end
-    scenario "user can't access to other user's show and edit page" do
+    scenario "it is impossible to access to user's show and edit page without permission" do
         user1 = FactoryBot.create(:user)
         user2 = FactoryBot.create(:user)
+        visit "/users/#{user1.id}"
+
+        expect(page).to have_content "ログインが必要です"
+        expect(page).to have_current_path "/login"
+
+        visit "/users/#{user1.id}/edit"
+
+        expect(page).to have_content "ログインが必要です"
+        expect(page).to have_current_path "/login"
+        
         log_in_as user1
         visit "/users/#{user2.id}"
 

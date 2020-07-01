@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user, {only: [:show, :favorites, :edit, :update]}
+  before_action :authenticate_user, {only: [:show, :favorites, :edit, :update, :logout]}
   before_action :forbid_login_user, {only: [:new, :create, :login_form, :login]}
   before_action :ensure_correct_user, {only: [:show, :favorites, :edit, :update]}
 
@@ -75,9 +75,11 @@ class UsersController < ApplicationController
   end
 
   def ensure_correct_user
-    if @current_user.id != params[:id].to_i
-      flash[:notice]="権限がありません"
-      redirect_to("/")
+    if @current_user
+      if @current_user.id != params[:id].to_i
+        flash[:notice]="権限がありません"
+        redirect_to("/")
+      end
     end
   end
 end
