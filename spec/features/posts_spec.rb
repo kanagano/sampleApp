@@ -30,7 +30,7 @@ RSpec.feature "Posts", type: :feature do
       expect(page).to have_current_path "/museums/#{@museum.id}"
     }.to change {Post.count}.by(1)
 
-    visit "/museums/#{@museum.id}/new"
+    visit "/posts/#{@museum.id}/new"
 
     expect(page).to have_content "すでにクチコミが存在します"
     expect(page).to have_current_path "/museums/#{@museum.id}"
@@ -57,7 +57,7 @@ RSpec.feature "Posts", type: :feature do
 
   scenario "it is impossible to write a post without login and edit other's post" do
     post = FactoryBot.create(:post)
-    visit "/museums/#{@museum.id}/new"
+    visit "/posts/#{@museum.id}/new"
 
     expect(page).to have_content "ログインが必要です"
     expect(page).to have_current_path "/login"
