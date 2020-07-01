@@ -15,6 +15,10 @@ RSpec.feature "Likes", type: :feature do
       click_link "Like #{@post.id}"
     }.to change {Like.count}.by(1)
 
+    visit "/likes/#{@post.id}/create"
+
+    expect(page).to have_current_path "/museums/#{@post.museum_id}"
+
     expect {
       click_link "Unlike #{@post.id}"
     }.to change {Like.count}.by(-1)
