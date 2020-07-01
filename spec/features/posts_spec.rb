@@ -35,7 +35,7 @@ RSpec.feature "Posts", type: :feature do
     expect(page).to have_content "すでにクチコミが存在します"
     expect(page).to have_current_path "/museums/#{@museum.id}"
 
-    post = Post.find_by(id: 1)
+    post = Post.last
     click_link "編集"
     select 1, from: "Rate"
     fill_in "Content", with: ""
@@ -48,6 +48,7 @@ RSpec.feature "Posts", type: :feature do
     select 1, from: "Rate"
     fill_in "Content", with: "Bad"
     click_button "Edit post"
+    post = Post.last
 
     expect(page).to have_content "クチコミを編集しました"
     expect(page).to have_current_path "/museums/#{post.museum_id}"
