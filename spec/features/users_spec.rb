@@ -16,6 +16,7 @@ RSpec.feature "Users", type: :feature do
         expect(page).to have_content "すでにログインしています"
         expect(page).to have_current_path "/"
     end
+
     scenario "user logs in, edits a profile and logs out " do
         user1 = FactoryBot.create(:user)
         user2 = FactoryBot.create(:user)
@@ -56,12 +57,8 @@ RSpec.feature "Users", type: :feature do
 
         expect(page).to have_content "ログアウトしました"
         expect(page).to have_content "ログイン"
-
-        visit "/logout"
-
-        expect(page).to "ログインが必要です"
-        expect(page).to have_current_path "/login"
     end
+
     scenario "it is impossible to access to user's show and edit page without permission" do
         user1 = FactoryBot.create(:user)
         user2 = FactoryBot.create(:user)
@@ -74,7 +71,7 @@ RSpec.feature "Users", type: :feature do
 
         expect(page).to have_content "ログインが必要です"
         expect(page).to have_current_path "/login"
-        
+
         log_in_as user1
         visit "/users/#{user2.id}"
 
