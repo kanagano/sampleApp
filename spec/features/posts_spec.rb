@@ -51,7 +51,6 @@ RSpec.feature "Posts", type: :feature do
 
     expect(page).to have_content "クチコミを編集しました"
     expect(page).to have_current_path "/museums/#{post.museum_id}"
-    expect(post.star).to eq 1
     expect(post.content).to eq "Bad"
   end
 
