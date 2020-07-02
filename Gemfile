@@ -60,7 +60,7 @@ group :development do
   gem 'solargraph'
   gem 'spring-commands-rspec'
   gem 'rubocop', require: false
-  gem 'rubocop-rails'
+  gem 'rubocop-rails', require: false
 end
 
 group :test do

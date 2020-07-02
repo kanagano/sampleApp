@@ -4,21 +4,25 @@ class PostsController < ApplicationController
   before_action :authenticate_user, {only: [:edit, :update, :new, :create]}
   
   def restrict_new_post
-    @post = Post.find_by(user_id: @current_user.id, museum_id: params[:museum_id])
-    if @post
-      flash[:notice] = "すでにクチコミが存在します"
-      redirect_to("/museums/#{params[:museum_id]}")
+    if @current_user
+      @post = Post.find_by(user_id: @current_user.id, museum_id: params[:museum_id])
+      if @post
+        flash[:notice] = "すでにクチコミが存在します"
+        redirect_to("/museums/#{params[:museum_id]}")
+      end
     end
   end
 
   def forbid_others_edit
-    @post = Post.find_by(id: params[:id])
-    if @current_user.id != @post.user_id
-      flash[:notice] = "権限がありません"
-      redirect_to("/users/#{@current_user.id}")
+    if @current_user
+      @post = Post.find_by(id: params[:id])
+      if @current_user.id != @post.user_id
+        flash[:notice] = "権限がありません"
+        redirect_to("/users/#{@current_user.id}")
+      end
     end
   end
-  
+
   def new
     @post = Post.new
     @museum = Museum.find_by(id: params[:museum_id])
@@ -35,7 +39,7 @@ class PostsController < ApplicationController
       flash[:notice] = "クチコミが投稿されました"
       redirect_to("/museums/#{params[:museum_id]}")
     else
-      @error_message = "正しい値を入力してください"
+      flash[:notice] = "正しい値を入力してください"
       @museum = Museum.find_by(id: params[:museum_id])
       render("posts/new")
     end
@@ -53,7 +57,7 @@ class PostsController < ApplicationController
       flash[:notice] = "クチコミを編集しました"
       redirect_to("/museums/#{@post.museum_id}")
     else
-      @error_message = "正しい値を入力してください"
+      flash[:notice] = "正しい値を入力してください"
       render("posts/edit")
     end
   end

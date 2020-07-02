@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user, {only: [:show, :favorites, :edit, :update]}
+  before_action :authenticate_user, {only: [:show, :favorites, :edit, :update, :logout]}
   before_action :forbid_login_user, {only: [:new, :create, :login_form, :login]}
   before_action :ensure_correct_user, {only: [:show, :favorites, :edit, :update]}
 
@@ -41,7 +41,7 @@ class UsersController < ApplicationController
   def create 
     @user = User.create(name: params[:name], email: params[:email], password: params[:password])
     if @user.save
-      notification = Notification.create(visitor_id: @user.id, visited_id: @user.id, action: 'signup')
+      Notification.create(visitor_id: @user.id, visited_id: @user.id, action: 'signup')
       session[:user_id] = @user.id
       flash[:notice] = "アカウントが作成されました"
       redirect_to("/users/#{@user.id}")
@@ -75,9 +75,11 @@ class UsersController < ApplicationController
   end
 
   def ensure_correct_user
-    if @current_user.id != params[:id].to_i
-      flash[:notice]="権限がありません"
-      redirect_to("/")
+    if @current_user
+      if @current_user.id != params[:id].to_i
+        flash[:notice]="権限がありません"
+        redirect_to("/")
+      end
     end
   end
 end
