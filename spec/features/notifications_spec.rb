@@ -38,5 +38,18 @@ RSpec.feature "Notifications", type: :feature do
 
       expect(page).to_not have_content "#{@post.writer.name}さんがあなたの投稿にいいねしました"
     }.to change {Notification.count}.by(1)
+
+    expect {
+      click_link "ログアウト"
+      log_in_as @user
+      visit "/museums/#{@post.id}"
+      click_link "Unlike #{@post.id}"
+      click_link "Like #{@post.id}"
+      click_link "ログアウト"
+      log_in_as @post.writer
+      click_link "Notification"
+
+      expect(page).to have_content "#{@user.name}さんがあなたの投稿にいいねしました"
+    }.to change {Notification.count}.by(0)
   end
 end
