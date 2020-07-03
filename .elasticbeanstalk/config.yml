@@ -3,12 +3,13 @@ branch-defaults:
     environment: null
     group_suffix: null
   set_up_eb_again#34:
-    environment: null
+    environment: eb-sample-dev
+    group_suffix: null
 global:
   application_name: eb-sample
   branch: null
   default_ec2_keyname: flyer_keypair.pem
-  default_platform: docker
+  default_platform: Docker
   default_region: ap-northeast-1
   include_git_submodules: true
   instance_profile: null
