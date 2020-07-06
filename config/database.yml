@@ -16,6 +16,7 @@ default: &default
   username: <%= ENV.fetch("RDS_USERNAME") { "root" } %>
   password: <%= ENV.fetch("RDS_PASSWORD") { "kbj489zzGx" } %>
   host: <%= ENV.fetch("RDS_HOSTNAME") { "db" } %>
+  port: <%= ENV.fetch("RDS_PORT") { "5432" } %>
 
 development:
   <<: *default
