@@ -16,7 +16,6 @@ default: &default
   username: <%= ENV.fetch("RDS_USERNAME") { "root" } %>
   password: <%= ENV.fetch("RDS_PASSWORD") { "kbj489zzGx" } %>
   host: <%= ENV.fetch("RDS_HOSTNAME") { "db" } %>
-  port: <%= ENV.fetch("RDS_PORT") { "5432" } %>
 
 development:
   <<: *default
@@ -49,7 +48,10 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: app_name_production
-  username: app_name
-  password: <%= ENV['APP_NAME_DATABASE_PASSWORD'] %>
+  adapter: mysql2
+  encoding: utf8
+  database: <%= ENV['RDS_DB_NAME'] %>
+  username: <%= ENV['RDS_USERNAME'] %>
+  password: <%= ENV['RDS_PASSWORD'] %>
+  host: <%= ENV['RDS_HOSTNAME'] %>
+  port: <%= ENV['RDS_PORT'] %>
