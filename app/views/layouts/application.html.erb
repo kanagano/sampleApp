@@ -13,12 +13,6 @@
 
   <body>
     <header>
-      <% if Rails.env.production? %>
-        <h1>Production</h1>
-      <% end %>
-      <% if Rails.env.development? %>
-        <h1>Development</h1>
-      <% end %>
       <nav class="navbar navbar-expand-lg navbar-dark bg-success pl-5 py-3">
         <%= link_to("信州美博Web", "/", {class: "navbar-brand"}) %>
         <div class="collapse navbar-collapse" id="navbarNav">
