@@ -1,0 +1,8 @@
+<h5 class="text-secondary"><%= "To #{post.target.name}" %></h5>
+<%= "投稿者: #{post.writer.name}" %>
+<% star = post.star %>
+<%= render partial: "museums/fiveStar", locals: {star: star} %>
+<p><%= post.content %></p>
+<% if post.created_at != post.updated_at %>
+    <p class="text-secondary">(編集済み)</p>
+<% end %>
