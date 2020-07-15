@@ -1,3 +1,24 @@
-<div class="container">
-    <h2 class="text-center mt-5">信州美術館WEBへようこそ！</h2>
+<div class="container mb-5">
+    <div class="row my-5">
+        <div class="col-9 border-right">
+            <div class="row justify-content-start ml-3">
+                <h5>最近追加された美術館</h5>
+            </div>
+            <% @museums.each do |museum| %>
+                <%= render partial: "museum", locals: {museum: museum} %>
+            <% end %>
+            <div class="row justify-content-end mr-3 mb-3">
+                <p><%= link_to("施設一覧へ", "/museums") %></p>
+            </div>
+            <div class="row justify-content-start ml-3 mt-3">
+                <h5>新着コメント</h5>
+            </div>
+            <% @posts.each do |post| %>
+                <%= render partial: "post", locals: {post: post} %>
+            <% end %>
+        </div>
+        <div class="col-3">
+            <%= render "museums/search_form" %>
+        </div>
+    </div>
 </div>

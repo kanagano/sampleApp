@@ -1,0 +1,13 @@
+<div class="container border rounded p-3 my-2">
+    <h5 class="text-secondary">
+        To 
+        <%= link_to("#{post.target.name}", "/museums/#{post.target.id}", {class: "text-secondary"}) %>
+    </h5>
+    <%= "投稿者: #{post.writer.name}" %>
+    <% star = post.star %>
+    <%= render partial: "museums/fiveStar", locals: {star: star} %>
+    <p><%= post.content %></p>
+    <% if post.created_at != post.updated_at %>
+        <p class="text-secondary">(編集済み)</p>
+    <% end %>
+</div>
