@@ -1,7 +1,6 @@
 class HomeController < ApplicationController
   def top
-  end
-
-  def about
+    @museums = Museum.order(id: "DESC").first(3)
+    @posts = Post.order(id: "DESC").first(3)
   end
 end
