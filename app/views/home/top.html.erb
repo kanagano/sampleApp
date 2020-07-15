@@ -1,38 +1,20 @@
-<div class="container">
-    <h2 class="text-center mt-5">信州美術館WEBへようこそ！</h2>
-</div>
-<div class="container">
-    <div class="row my-2">
+<div class="container mb-5">
+    <div class="row my-5">
         <div class="col-9 border-right">
+            <div class="row justify-content-start ml-3">
+                <h5>最近追加された美術館</h5>
+            </div>
             <% @museums.each do |museum| %>
-                <div class="container border rounded my-4">
-                    <div class="row">
-                        <div class="col-4 border-right">
-                            <%= image_tag "/museum_images/#{museum.image_name}", class: "index-image mx-auto d-block"%>
-                        </div>
-                        <div class="col-8">
-                            <h4 class="mt-2"><%= link_to(museum.name, "/museums/#{museum.id}") %></h4>
-                            <p><%= museum.location %></p>
-                            <% posts = museum.posts %>
-                            <% if posts.exists? %>
-                                <% starSum = posts.sum(:star) %>
-                                <% starAverage = starSum.fdiv(posts.count).round(2) %>
-                                <% museumStar = starSum.fdiv(posts.count).round %>
-                                <p>
-                                    <%= render partial: "fiveStar", locals: {star: museumStar} %>
-                                    <%= "#{starAverage} / 5.0 (#{museum.posts.count})" %>
-                                </p>
-                            <% else %>
-                                <p>
-                                    <% 5.times do %>
-                                        <span class="fa fa-star text-secondary"></span>
-                                    <% end %>
-                                    <%= "　" + "- - - (0)" %>
-                                </p>
-                            <% end %>
-                        </div>
-                    </div>
-                </div>
+                <%= render partial: "museum", locals: {museum: museum} %>
+            <% end %>
+            <div class="row justify-content-end mr-3 mb-3">
+                <p><%= link_to("施設一覧へ", "/museums") %></p>
+            </div>
+            <div class="row justify-content-start ml-3 mt-3">
+                <h5>新着コメント</h5>
+            </div>
+            <% @posts.each do |post| %>
+                <%= render partial: "post", locals: {post: post} %>
             <% end %>
         </div>
         <div class="col-3">

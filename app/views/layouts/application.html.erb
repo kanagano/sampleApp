@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>信州美術館WEB</title>
+    <title>信州美術館Web</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -14,7 +14,7 @@
   <body>
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-success pl-5 py-3">
-        <%= link_to("信州美博Web", "/", {class: "navbar-brand"}) %>
+        <%= link_to("信州美術館Web", "/", {class: "navbar-brand"}) %>
         <div class="collapse navbar-collapse" id="navbarNav">
           <% if @current_user %>
             <ul class="navbar-nav mr-auto">
@@ -54,6 +54,6 @@
       </div>
     <% end %>
     <%= yield %>
-    <footer class="footer fixed-bottom">Shinshu Bihaku Web</footer>
+    <footer class="footer fixed-bottom">Shinshu Art Museum Web</footer>
   </body>
 </html>

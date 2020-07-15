@@ -14,9 +14,18 @@
  */
 @import "bootstrap";
 
+.top-message{
+    font-family: serif;
+}
+
 .jumbotron{
-    background-image: url("/common_images/forest.jpg");
+    background: url("/common_images/waterfall.jpg") center no-repeat;
     background-size: cover;
+}
+
+.home-jumbotron{
+    height: 150px;
+    background: rgba(0, 0, 0, 0.5);
 }
 
 .index-image{
