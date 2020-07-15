@@ -12,7 +12,7 @@
                 <% starAverage = starSum.fdiv(posts.count).round(2) %>
                 <% museumStar = starSum.fdiv(posts.count).round %>
                 <p>
-                    <%= render partial: "fiveStar", locals: {star: museumStar} %>
+                    <%= render partial: "museums/fiveStar", locals: {star: museumStar} %>
                     <%= "#{starAverage} / 5.0 (#{museum.posts.count})" %>
                 </p>
             <% else %>
