@@ -2,6 +2,9 @@ branch-defaults:
   eb:
     environment: null
     group_suffix: null
+  master:
+    environment: eb-sample-dev
+    group_suffix: null
   set_up_eb_again#34:
     environment: null
     group_suffix: null
