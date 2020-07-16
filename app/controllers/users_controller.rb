@@ -20,10 +20,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def index
-    @users = User.all
-  end
-  
   def show
     @user = User.find_by(id: params[:id])
     @posts = @user.posts.order("updated_at DESC").first(3)
