@@ -19,7 +19,7 @@
                     </select>
                 </p>
                 <p>
-                    <textarea class="form-control" id="Content" name="content"><%= @post.content %></textarea>
+                    <textarea class="form-control" id="Content" name="content"><%= safe_join(@post.content.split("\n"), tag(:br)) %></textarea>
                 </p>
                 <p>
                     <input class="btn btn-primary" id="Edit post" type="submit" value="更新">
