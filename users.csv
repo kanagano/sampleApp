@@ -1,0 +1,4 @@
+"id","name","email","created_at","updated_at","password"
+"1","tanaka taro","taro@example","2020-07-22 15:18:09","2020-07-22 15:18:09","taro123"
+"2","梅野隆太郎","umeno@example","2020-07-23 13:42:12","2020-07-23 13:42:12","umeno123"
+"3","tomoya mori","tomoya@example","2020-07-23 13:57:21","2020-07-23 13:57:21","tomoya123"
