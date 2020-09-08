@@ -1,26 +1,15 @@
 # README
 
-信州美術館Web
+アプリケーションについて:
+*長野県内の美術館情報を閲覧・検索できるアプリケーションです。
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+アプリケーションの機能一覧:
+*コメント、いいね、お気に入り機能
+*ページネーション機能
+*会員登録、ログイン/アウト機能
+*キーワード検索機能
+*５つ星評価機能
+*通知機能
+*Google Maps APIによる地図表示
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+使用している技術一覧:
