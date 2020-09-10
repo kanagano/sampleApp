@@ -13,3 +13,8 @@
 *Google Maps APIによる地図表示  
 
 使用している技術一覧:  
+- AA
+- BB
+
+* CC
+* DD
