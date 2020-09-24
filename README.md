@@ -17,7 +17,7 @@
 * AWS (ElasticBeanstalk, Route53)
 * RSpec 
 * Rubocop
-* CircleCI
+* CircleCI (RSpecによるテスト自動化)
 * Bootstrap4
 * MySQL
 * Git, GitHub
